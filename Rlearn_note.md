@@ -37,3 +37,5 @@
 凡是修改了package.json都需要重启
 babel.config.js 是对babel 进行配置
 favicon.ico 是浏览器标签上的图标，可以换成自己公司的图标
+assets 包含的是静态文件--图片等
+components 包含的是组件
