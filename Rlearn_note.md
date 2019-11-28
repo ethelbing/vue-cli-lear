@@ -33,3 +33,7 @@
 ## import code from another repository
 ## ---- You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 ## vscode ->extension ->pull 下载更新  /push 上传更新 / commite 提交到本地仓
+
+凡是修改了package.json都需要重启
+babel.config.js 是对babel 进行配置
+favicon.ico 是浏览器标签上的图标，可以换成自己公司的图标
