@@ -22,7 +22,7 @@
 ## create a new repository on the command line
 ## echo "# vue-cli-lear" >> README.md
 ## git init
-## git add README.md/ git add all
+## git add README.md/ git add -A
 ## git commit -m "first commit"
 ## git remote add origin https://github.com/ethelbing/vue-cli-lear.git
 ## git push -u origin master
