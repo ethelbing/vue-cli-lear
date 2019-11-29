@@ -1,15 +1,18 @@
 <template>
 <div id="app">
-    <Header @titleCange="upateTitle"  :title="title" />
+    <!-- 生命周期函数 -->
+    <LiftCycle @titleCange="upateTitle"  :title="title"/>
+    <!-- <Header @titleCange="upateTitle"  :title="title" /> -->
     <img alt="Vue logo" src="./assets/logo.png">
     <h5>app-vue</h5>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <!-- 1、传值 -->
-    <passVal :sbqUser="passValDate"></passVal>
+    <!-- <passVal :sbqUser="passValDate"></passVal> -->
     <hr>
     <!-- 2、传引用 -->
-    <passVal :sbqUser="passValDate"></passVal>
+    <!-- <passVal :sbqUser="passValDate"></passVal> -->
     <!-- <User ></User> -->
+    
     <Footer :title="title"/>
 </div>
 </template>
@@ -21,9 +24,11 @@
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 //27 组件属性传值
-import passVal from './components/PassVal.vue'
+// import passVal from './components/PassVal.vue'
 //原始创建页
 // import HelloWorld from './components/HelloWorld.vue'
+//30 生命周期函数
+import LiftCycle from './components/LiftCycle.vue'
 
 export default {
     name: 'app',
@@ -83,7 +88,8 @@ export default {
         // User,
         Footer,
         // 组件属性传值
-        passVal
+        // passVal,
+        LiftCycle
     },
     methods:{
         upateTitle(inputTitle){  //定义的是header中调用的方法 

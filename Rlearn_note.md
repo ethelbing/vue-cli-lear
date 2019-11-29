@@ -724,3 +724,191 @@ beforeUpdate: 但是页面加载，难免会有一些页面的数据加载更新
 updated: 进行到此函数，表示数据已经更新完成了，此时要把页面重新挂载到一个DOM里面去，这个就是此时数据已经加载完成了，再重新挂载到DOM里面去
 beforeDestroy: 此函数是离开页面之前会被调用的，这里可以调用一些定时器（把这个定时器干掉）、第三方（离开时候把第三方冗余的东西干掉）,避免内存泄漏
 distroyed: 这个就是实例完全被销毁了
+例子查看：
+app.vue
+<template>
+<div id="app">
+    <!-- 生命周期函数 -->
+    <LiftCycle @titleCange="upateTitle"  :title="title"/>
+    <!-- <Header @titleCange="upateTitle"  :title="title" /> -->
+    <img alt="Vue logo" src="./assets/logo.png">
+    <h5>app-vue</h5>
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <!-- 1、传值 -->
+    <!-- <passVal :sbqUser="passValDate"></passVal> -->
+    <hr>
+    <!-- 2、传引用 -->
+    <!-- <passVal :sbqUser="passValDate"></passVal> -->
+    <!-- <User ></User> -->
+    
+    <Footer :title="title"/>
+</div>
+</template>
+
+<script>
+//25 局部组件
+// import User from './components/User.vue'
+//26 嵌套多个组件
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
+//27 组件属性传值
+// import passVal from './components/PassVal.vue'
+//原始创建页
+// import HelloWorld from './components/HelloWorld.vue'
+//30 生命周期函数
+import LiftCycle from './components/LiftCycle.vue'
+
+export default {
+    name: 'app',
+    //组件传值添加--
+    data() {
+        return {
+            passValDate: [{
+                    test: '111',
+                    id: 1,
+                    show: true
+                },
+                {
+                    test: '222',
+                    id: 2,
+                    show: true
+                },
+                {
+                    test: '333',
+                    id: 3,
+                    show: true
+                },
+                {
+                    test: '444',
+                    id: 4,
+                    show: true
+                },
+
+                {
+                    test: '444',
+                    id: 4,
+                    show: true
+                },
+                {
+                    test: '444',
+                    id: 4,
+                    show: true
+                },
+                {
+                    test: '444',
+                    id: 4,
+                    show: true
+                },
+                {
+                    test: '444',
+                    id: 4,
+                    show: true
+                },
+            ],
+            title:"vue pass value"
+        }
+    },
+    //----
+    components: {
+        // HelloWorld
+        //26 嵌套多个组件
+        Header,
+        // User,
+        Footer,
+        // 组件属性传值
+        // passVal,
+        LiftCycle
+    },
+    methods:{
+        upateTitle(inputTitle){  //定义的是header中调用的方法 
+        //由于@titleCange 事件有传入的参数值，所以此处需要定义给形参接收参数
+        // console.log(inputTitle);     
+        this.title=inputTitle;       
+        }
+    }
+}
+</script>
+
+<style>
+#app {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+h5 {
+    color: green
+}
+</style>
+
+liftcycle.vue
+<template>
+    <div @click="changeTitle(show)" ref="title" class="header">
+      <h4>{{ headerVal }} {{ title }} </h4>
+    </div>
+</template>
+
+
+<script>
+export default {
+    props:{
+        title:{
+            type:String
+        }
+    },
+    data(){
+        return {
+            show:true,
+            headerVal:"Vue Components Demo",
+            oldtitle:String
+        }
+    },
+    watch:{
+        title(newVal, oldVal) {
+             this.oldtitle=oldVal;
+        }
+    },
+    methods:{
+        changeTitle(signshow){
+            this.$emit("titleCange","hello change the title success")
+        }
+    },
+    //生命周期函数
+    beforeCreate(){
+        alert("这是实例还没有被创建，所以你无法知道data，也不能用watch监听");
+    },
+    created(){
+        alert("这是实例已经创建，可以得到data，调用watch，但是页面还是空白的");
+    },
+   beforeMount(){
+       alert("页面挂载前，此时页面依然是空白的。这时render函数首次被调用");
+   },
+   mounted(){
+       alert("页面挂载了，这时你可以看到页面的内容，也可以访问到DOM");
+   },
+   beforeUpdate(){
+       alert("数据更新前，也就是虚拟dom打补丁之前");
+   },
+   updated(){
+       alert("数据已经更新完毕")
+   },
+   beforeDestroy(){
+       alert("页面离开之前被调用，清除定时器或者第三方的一些dom结构");
+   },
+   destroyed(){
+       alert("实例被完全销毁");
+   }
+}
+</script>
+
+
+<style scoped>
+.header{
+    background: lightgreen;
+    padding: 10px;
+}
+h4{
+    color:#222;
+    text-align:center;
+}
+</style>
