@@ -1,0 +1,19 @@
+log.js?1afd:24 [HMR] Waiting for update signal from WDS...
+vue.runtime.esm.js?2b0e:8423 Download the Vue Devtools extension for a better development experience:
+https://github.com/vuejs/vue-devtools
+vue.runtime.esm.js?2b0e:619 [Vue warn]: Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop's value. Prop being mutated: "title"
+
+found in
+
+---> <Header>
+       <App> at src/App.vue
+         <Root>
+warn @ vue.runtime.esm.js?2b0e:619
+eval @ vue.runtime.esm.js?2b0e:4672
+reactiveSetter @ vue.runtime.esm.js?2b0e:1045
+proxySetter @ vue.runtime.esm.js?2b0e:4625
+changeTitle @ Header.vue?5e07:30
+click @ Header.vue?a9d7:12
+invokeWithErrorHandling @ vue.runtime.esm.js?2b0e:1854
+invoker @ vue.runtime.esm.js?2b0e:2179
+original._wrapper @ vue.runtime.esm.js?2b0e:6911
