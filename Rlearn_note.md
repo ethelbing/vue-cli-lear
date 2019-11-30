@@ -901,7 +901,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .header{
     background: lightgreen;
@@ -912,3 +911,146 @@ h4{
     text-align:center;
 }
 </style>
+
+
+# lesson 31 slot插槽的使用 FormHelper.vue
+api -> 特殊特性 -> slot 
+
+example 1:
+全部标签传递过来，不能分开显示：
+app.vue
+<template>
+<div id="app">
+    <FormHelper>
+        <!-- 如果只是这样写，并不能传递给formhelper页面 -->
+        <h6>this is a title</h6>
+        <p>想传递的文本标签前内容</p>
+    </FormHelper>
+</div>
+</template>
+
+<script>
+import FormHelper from './components/FormHelper.vue'
+
+export default {
+    name: 'app',
+    data() {
+        return {}
+    },
+    components: {
+        FormHelper
+    },
+    methods:{}
+}
+</script>
+
+<style>
+#app {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+h5 {
+    color: green
+}
+</style>
+
+formhelper.vue
+<template>
+<div class="formHelper">
+    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit
+        Consequatur, soluta?
+    </h5>
+    <!-- 只有加入slot app.vue上面家的标签才能正常显示 -->
+    <slot></slot> 
+    <!-- 但此时是全部的标签都显示在这里<h6>&<p> -->
+</div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {}
+    }
+}
+</script>
+
+<style scoped>
+</style>
+
+example 2:想分分开标签显示
+<title>
+<h5>
+<p>
+
+app.vue
+<template>
+<div id="app">
+    <FormHelper>
+        <h6 slot="title">this is a title</h6>
+        <p slot = "text">想传递的文本标签前内容</p>
+    </FormHelper>
+</div>
+</template>
+
+<script>
+import FormHelper from './components/FormHelper.vue'
+
+export default {
+    name: 'app',
+    //组件传值添加--
+    data() {
+        return {}
+    },
+    components: {
+        FormHelper
+    },
+    methods:{}
+}
+</script>
+
+<style>
+#app {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+h5 {
+    color: green
+}
+</style>
+
+formhelper.vue
+<template>
+<div class="formHelper">
+    <slot name="title"></slot> 
+    <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit
+        Consequatur, soluta?
+    </h5>
+    <!-- 只有加入slot app.vue上面家的标签才能正常显示 -->
+    <slot name='text'></slot> 
+</div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            copyright: 'Copyright 2020 Vue Demo'
+        }
+    }
+}
+</script>
+<style scoped>
+</style>
+
+想给<slot name="title"></slot> 设置样式
+设置给formhelper.vue 可以实现
+<style scoped>
+h6{
+    background:cornflowerblue;
+}
+</style>
+
