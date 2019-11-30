@@ -16,10 +16,12 @@
     <!-- slot -->
     <FormHelper>
         <!-- 如果只是这样写，并不能传递给formhelper页面 -->
-        <h6 slot="title">this is a title</h6>
-        <p slot = "text">想传递的文本标签前内容</p>
-    </FormHelper>
+        <div slot="title">
+            <h6 slot="title">{{ title }}</h6>
+        </div>
 
+        <p slot="text">想传递的文本标签前内容</p>
+    </FormHelper>
 
 </div>
 </template>
@@ -87,6 +89,7 @@ export default {
             //     },
             // ],
             // title:"vue pass value"
+            title: 'slot 调用标签'
         }
     },
     //----
@@ -101,7 +104,7 @@ export default {
         // LiftCycle
         FormHelper
     },
-    methods:{
+    methods: {
         // upateTitle(inputTitle){  //定义的是header中调用的方法 
         //由于@titleCange 事件有传入的参数值，所以此处需要定义给形参接收参数
         // console.log(inputTitle);     

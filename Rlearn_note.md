@@ -1053,4 +1053,49 @@ h6{
     background:cornflowerblue;
 }
 </style>
+但通常元素标签在哪里就在那里写样式
+
+title 属性值在哪里写？
+样式可以在接收方写，但是不建议，但是属性只能在传递方写，接收方是不执行的
+可行example 3：
+<template>
+<div id="app">
+    <FormHelper>
+        <div slot="title">
+            <h6 slot="title">{{ title }}</h6>
+        </div>
+        <p slot="text">想传递的文本标签前内容</p>
+    </FormHelper>
+</div>
+</template>
+
+<script>
+import FormHelper from './components/FormHelper.vue'
+
+export default {
+    name: 'app',
+    data() {
+        return {
+            title: 'slot 调用标签'
+        }
+    },
+    components: {
+
+        FormHelper
+    },
+    methods: {}
+}
+</script>
+
+<style>
+#app {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+h5 {
+    color: green
+}
+</style>
 
