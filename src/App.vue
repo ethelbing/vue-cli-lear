@@ -14,15 +14,24 @@
     <!-- <User ></User> -->
     <!-- <Footer :title="title"/> -->
     <!-- slot -->
-    <FormHelper>
+    <!-- <FormHelper> -->
         <!-- 如果只是这样写，并不能传递给formhelper页面 -->
-        <div slot="title">
+        <!-- <div slot="title">
             <h6 slot="title">{{ title }}</h6>
         </div>
 
         <p slot="text">想传递的文本标签前内容</p>
-    </FormHelper>
-
+    </FormHelper> -->
+    <!-- <form-one /> -->
+    <!-- <form-two /> -->
+    <keep-alive>
+        <component :is="component"></component>
+    </keep-alive>
+    <!-- <component :is="component"></component>--> 
+     <!-- data 给定component 值默认显示form-two -->
+    <button @click="component='form-one'">form-one显示</button>
+    <button @click="component='form-two'">from-two显示</button>
+    
 </div>
 </template>
 
@@ -39,7 +48,10 @@
 //30 生命周期函数
 // import LiftCycle from './components/LiftCycle.vue'
 //31 slot 插槽
-import FormHelper from './components/FormHelper.vue'
+// import FormHelper from './components/FormHelper.vue'
+//32 components学习
+import FormOne from './components/FormOne.vue'
+import FromTwo from './components/FormTwo.vue'
 
 export default {
     name: 'app',
@@ -89,7 +101,8 @@ export default {
             //     },
             // ],
             // title:"vue pass value"
-            title: 'slot 调用标签'
+            // title: 'slot 调用标签',
+            component:'form-two'  
         }
     },
     //----
@@ -102,7 +115,10 @@ export default {
         // 组件属性传值
         // passVal,
         // LiftCycle
-        FormHelper
+        // FormHelper
+        //components 学习
+        "form-one":FormOne,
+        "form-two":FromTwo        
     },
     methods: {
         // upateTitle(inputTitle){  //定义的是header中调用的方法 
@@ -123,5 +139,8 @@ export default {
 
 h5 {
     color: green
+}
+button{
+    margin-right: 10px;
 }
 </style>

@@ -1099,3 +1099,209 @@ h5 {
 }
 </style>
 
+# lesson 31 components Component.vue & FormOne.vue &FormTwo.vue & App.vue
+Component.vue
+<template>
+<div>
+    <h5>填充以下表单内容</h5>
+    <form>
+        <div id="form-header">
+            <slot name="form-header"></slot>
+        </div>
+        <div id="form-fields">
+            <slot name="form-fields"></slot>
+        </div>
+        <div id="form-controls">
+            <slot name="form-controls"></slot>
+        </div>
+        <div id="useful-links">
+            <ul>
+                <li>
+                    <a href="#">link 1</a></li>
+                <li>
+                    <a href="#">link 2></a></li>
+                <li>
+                    <a href="#">link 3</a></li>
+                <li>
+                    <a href="#">link 4</a></li>
+            </ul>
+        </div>
+    </form>
+</div>
+</template>
+<script>
+export default {
+    components:{},
+    date(){
+        return{}
+    },
+    methods:{}
+}
+</script>
+<style scoped>
+h5{
+    text-align:center;
+}
+form{
+    width:100%;
+    max-width:960px;
+    margin:0 auto;
+}
+#useful-links ul{
+    padding:0;
+}
+#useful-links li{
+    display:inline-block;
+    margin-right:10px;
+}
+form > div{
+    padding:20px;
+    background:#eee;
+    margin:20px 0;
+}
+#form-header{
+    background: #ddd;
+    border: 1px solid #bbb;
+}
+</style>
+
+FormOne.vue
+<template>
+<div>
+    <components>
+        <div slot="form-header">
+            <h4>Form One - Contact Us</h4>
+            <p>填写以下内容</p>
+        </div>
+        <div slot="form-fields">
+            <input type="text" placeholder="name" required /><br/>
+            <label>随便说点啥：</label>
+            <textarea></textarea>
+        </div>
+        <div slot="form-controls">
+            <button v-on:click="handlerSubmit">
+                发送
+            </button>
+        </div>
+    </components>
+</div>
+</template>
+
+<script>
+import Component from './Component.vue'
+
+export default {
+    components: {
+        "components": Component
+    },
+    data() {
+        return {}
+    },
+    methods: {
+        handlerSubmit: function () {
+            alter("thanks for submitting form one & contacting us");
+        }
+    }
+}
+</script>
+
+<style scoped>
+</style>
+
+FormOne.vue
+<template>
+<div>
+    <components>
+        <div slot="form-header">
+            <h4>Form Two - Contact Us</h4>
+            <p>随便写点东西</p>
+        </div>
+        <div slot="form-fields">
+            <input type="text" placeholder="username" required /><br/>
+            <input type="password" placeholder="password" required />
+        </div>
+        <div slot="form-controls">
+            <button v-on:click="handlerSubmit">
+                登入
+            </button>
+        </div>
+    </components>
+</div>
+</template>
+
+<script>
+import Component from './Component.vue'
+
+export default {
+    components: {
+        "components": Component
+    },
+    data() {
+        return {}
+    },
+    methods: {
+        handlerSubmit: function () {
+            alter("thanks for logging in （form two)");
+        }
+    }
+}
+</script>
+
+<style scoped>
+</style>
+
+
+App.vue
+<template>
+<div id="app">
+    </FormHelper> -->
+    <!-- <form-one /> -->
+    <!-- <form-two /> -->
+    <component :is="component"></component> <!-- data 给定component 值默认显示form-two -->
+    <button @click="component='form-one'">form-one显示</button>
+    <button @click="component='form-two'">from-two显示</button>
+</div>
+</template>
+
+<script>
+
+import FormOne from './components/FormOne.vue'
+import FromTwo from './components/FormTwo.vue'
+
+export default {
+    name: 'app',
+    //组件传值添加--
+    data() {
+        return {
+            component:'form-two'  
+        }
+    },
+    components: {
+        "form-one":FormOne,
+        "form-two":FromTwo        
+    },
+    methods: {}
+}
+</script>
+
+<style>
+#app {
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+h5 {
+    color: green
+}
+button{
+    margin-right: 10px;
+}
+</style>
+
+# keep-alive 
+app.vue
+<keep-alive>
+        <component :is="component"></component>
+</keep-alive>
+此时组件中的就会被缓存起来，就不会被点击其他按键返回后重新渲染
